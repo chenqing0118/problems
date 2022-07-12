@@ -1,0 +1,7 @@
+fx文件代表一个材质模板，包括含有的属性以及初始值
+
+里面的pass指定了不同渲染使用的shader，一般包含前向forward，延迟gbuffer，阴影贴图shadowmapping，深度图predepth
+
+getpositioninput中，为什么uvTXS=NDC，positioninput是干什么的（暂时理解为取名问题
+
+为什么shaderpassforward中可以使用lightloop等函数 （没有声明不代表不可以用，因为只有shader会被编译，hlsl不会编译，只要shader中是全的就好）
