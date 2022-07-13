@@ -1,0 +1,18 @@
+左手系如何变为右手系，只需要一个符号取反就可以，变换矩阵的行列式为负的？
+unity世界空间中是左手系，观察空间中是右手系。
+
+lit.shader中包含了填充surfacedata的属性，定义各种pass
+shaderpassXXXX.hlsl定义vert和frag，其中计算用到的数据结构、数据来自litXXX.hlsl?
+
+
+
+在每个pass中有lit.hlsl和litdata.hlsl他们是用来
+
+git upstream是什么，表示本地branch和远程branch之间的关联关系，可以从.git/config处查看
+git push <远程主机名> <本地分支名>:<远程分支名>
+
+如果只想取回特定分支的更新，可以指定分支名,如下所示 -
+git fetch origin develop/Main
+
+删除远程分支
+git push origin --delete 分支名
