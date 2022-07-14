@@ -1,0 +1,22 @@
+一个shader的定义过程
+
+litforward.shader表示一个lit材质的前向渲染的shader
+与unity hdrp 中的lit.shader比较而言，这定义了一个pass。而hdrp中含有多个pass
+
+从最后的shaderpassforward.hlsl看起，这里面包含前向渲染vert和frag的流程，里面使用到的数据结构和方法则在具体的材质中有定义
+不同的材质（本例中是lit）在数据结构和方法会有区别，而前向渲染的流程一般不变，也就是shaderpassforward.hlsl一般不用修改。
+
+具体到某个材质，由三者构成，lit.hlsl，litVariables.hlsl，litData.hlsl
+先看lit.hlsl，里面包含了SurfaceData，BSDFData，PreLightData等用于光照计算的数据结构，ConvertSurfaceDataToBSDFData方法
+
+litVariables.hlsl里是什么暂时不清楚
+
+litData.hlsl包含了一个 GetSurfaceData(float3 V, PSInput psInput, bool isFrontFace)方法，
+为什么不把这个函数放到lit.hlsl中呢？因为不同材质的此函数不同！！
+
+variable.hlsl中的space0，1，2代表不同的更新频率，model，material，glabal更新的频率不同
+
+--------------RayTracing------------------
+注意，一次漫反射只会选择一个方向去反射，且经过至多maxdepth后停止
+对于一个像素多次采样取平均值，主要是为了解决边缘的锯齿感，取平均值可以更好的融合背景
+albedo反射率，attenuation衰减(这个就是颜色乘法的来源，可以理解为为每次散射会留下的能量
